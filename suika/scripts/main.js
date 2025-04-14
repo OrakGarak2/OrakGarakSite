@@ -233,7 +233,7 @@ Events.on(engine, "collisionStart", (event) => {
             World.add(world, newBody);
 
             // 게임 승리 조건
-            if(newBody.index === 9) {
+            if(newBody.index === 10) {
                 setTimeout(() => {
                     alert("You made watermelon!\nCongratulation!");
                     disableAction = true;
