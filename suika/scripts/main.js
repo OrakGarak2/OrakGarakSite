@@ -47,6 +47,9 @@ const ground = Bodies.rectangle(310, 820, 620, 60, {
 })
 
 const topLine = Bodies.rectangle(310, 150, 620, 2, {
+    // 이벤트 처리를 위한 이름 지정
+    name: "topLine",
+
     isStatic: true,
     isSensor: true,  // 센서 기능
     render: {fillStyle: "#8FE143"}
@@ -100,16 +103,20 @@ window.onkeydown = (event) => {
     switch(event.code)
     {
         case "KeyA":
-            Body.setPosition(currentBody, {
-                x: currentBody.position.x - 10,
-                y: currentBody.position.y
-            })
+            if(currentBody.position.x - currentFruit.radius > 30) {
+                Body.setPosition(currentBody, {
+                    x: currentBody.position.x - 10,
+                    y: currentBody.position.y
+                })
+            }
             break;
         case "KeyD":
-            Body.setPosition(currentBody, {
-                x: currentBody.position.x + 10,
-                y: currentBody.position.y
-            })
+            if(currentBody.position.x + currentFruit.radius < 590) {
+                Body.setPosition(currentBody, {
+                    x: currentBody.position.x +10,
+                    y: currentBody.position.y
+                })
+            }
             break;
         case "KeyS":
             currentBody.isSleeping = false;
@@ -156,6 +163,11 @@ Events.on(engine, "collisionStart", (event) => {
 
             // 새로 만든 과일 추가
             World.add(world, newBody);
+        }
+
+        if(!disableAction && (collision.bodyA.name === "topLine" || collision.bodyB.name === "topLine")){
+            alert("Game Over");
+            disableAction = true;
         }
     })
 })
