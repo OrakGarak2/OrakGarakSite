@@ -13,11 +13,11 @@ const FRUITS= [
     radius: 61 / 2,
   },
   {
-    name: "image/03_gyool",
+    name: "image/03_dekopon",
     radius: 69 / 2,
   },
   {
-    name: "image/04_orange",
+    name: "image/04_persimmon",
     radius: 89 / 2,
   },
   {
